@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BonsucessoFilmes – Color Grading</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BACKGROUND MOBILE FIX */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    animation: cinematicBG 25s ease-in-out infinite alternate;
+}
+
+@keyframes cinematicBG {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15) translateY(20px); }
+}
+
+/* CARD */
+main {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    box-shadow:
+        0 0 10px rgba(193, 53, 132, 0.3),
+        0 0 20px rgba(225, 48, 108, 0.2),
+        0 0 40px rgba(247, 119, 55, 0.1),
+        0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* OVERLAY COLOR GRADING */
+.color-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: color;
+    opacity: 0.35;
+}
+
+/* LOGO */
+h1 {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #833AB4,
+        #C13584,
+        #E1306C,
+        #F77737,
+        #FCAF45
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 1.25rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+}
+
+/* TEXTO */
+p {
+    text-align: left;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    color: #eee;
+}
+
+/* LISTA */
+ul {
+    margin: 1.5rem 0;
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+/* COLOR WHEEL */
+li::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+
+    background: conic-gradient(
+        #833AB4,
+        #C13584,
+        #E1306C,
+        #F77737,
+        #FCAF45,
+        #833AB4
+    );
+
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* CONTROLES */
+.controls {
+    margin-top: 20px;
+}
+
+.control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.control label {
+    width: 70px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+input[type=range] {
+    flex: 1;
+}
+
+/* BOTÃO */
+.btn-instagram {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+
+    background: linear-gradient(
+        45deg,
+        #833AB4,
+        #C13584,
+        #E1306C,
+        #F77737,
+        #FCAF45
+    );
+}
+
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="color-overlay" id="overlay"></div>
+
+    <h1>BONSUCESSO FILMES</h1>
+    <h2>Color Grading</h2>
+
+    <!-- TEXTO PROFISSIONAL -->
+    <p>
+        Na BonsucessoFilmes, transformamos imagens em experiências visuais de alto impacto,
+        através de um processo de colorização que une narrativa, técnica e identidade estética.
+    </p>
+
+    <p>
+        Cada projeto é tratado com precisão e sensibilidade artística, garantindo que cada frame
+        traduza a intenção criativa e alcance o máximo potencial visual — do cinema ao streaming.
+    </p>
+
+    <ul>
+        <li>Correção de Cor</li>
+        <li>LUTs Customizados</li>
+        <li>Tratamento de Pele</li>
+        <li>Finalização Profissional</li>
+    </ul>
+
+    <!-- CONTROLES -->
+    <div class="controls">
+        <div class="control">
+            <label>Lift</label>
+            <input type="range" min="0" max="360" value="0" id="lift">
+        </div>
+
+        <div class="control">
+            <label>Gamma</label>
+            <input type="range" min="0" max="360" value="120" id="gamma">
+        </div>
+
+        <div class="control">
+            <label>Gain</label>
+            <input type="range" min="0" max="360" value="240" id="gain">
+        </div>
+    </div>
+
+    <a href="https://www.instagram.com/bonsucessofilmess"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn-instagram">
+       Instagram
+    </a>
+</main>
+
+<script>
+const overlay = document.getElementById("overlay");
+const lift = document.getElementById("lift");
+const gamma = document.getElementById("gamma");
+const gain = document.getElementById("gain");
+
+function updateColor(){
+    overlay.style.background = `
+        radial-gradient(circle at 20% 50%, hsl(${lift.value},100%,50%), transparent 40%),
+        radial-gradient(circle at 50% 50%, hsl(${gamma.value},100%,50%), transparent 40%),
+        radial-gradient(circle at 80% 50%, hsl(${gain.value},100%,50%), transparent 40%)
+    `;
+}
+
+[lift, gamma, gain].forEach(el => el.addEventListener("input", updateColor));
+updateColor();
+</script>
+
+</body>
+</html>
